@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <title>予約一覧</title>
-  <% const interval=10; %>
   <link rel="icon" href="/images/icon.jpg" type="image/jpeg" />
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/reservation.css">
@@ -13,7 +12,6 @@
 <body>
 
   <h1>予約送信ページ</h1>
-
   <form action="" method="post">
     <p>
       <label for="name">代表者氏名(必須):</label>
@@ -23,25 +21,18 @@
       <label for="time">開始時間を選んでください(必須):</label>
       <select name="time" id="time" required>
         <% for(let i=540;i <=820;i=i+interval) { %>
-        <% hour=String(Math.floor(i/60)).padStart(2,"0"); %>
-        <% minute=String(i%60).padStart(2,"0"); %>
-        <option value=<%= `${hour}:${minute}` %>><%= `${hour}:${minute}~` %></option>
+          <% hour=String(Math.floor(i/60)).padStart(2,"0"); %>
+          <% minute=String(i%60).padStart(2,"0"); %>
+          <option value=<%= `${hour}:${minute}` %>><%= `${hour}:${minute}~` %></option>
         <%}%>
         </select>
       </p>
       <p>
         <label for="people">参加者の総数(必須):</label>
         <select name="people" id="people" required>
-          <option value=1>1人</option>
-          <option value=2>2人</option>
-          <option value=3>3人</option>
-          <option value=4>4人</option>
-          <option value=5>5人</option>
-          <option value=6>6人</option>
-          <option value=7>7人</option>
-          <option value=8>8人</option>
-          <option value=9>9人</option>
-          <option value=10>10人</option>
+          <% for(let i=1;i<=maxpeople;i++) { %>
+          <option value=<%=i%>><%= `${i}人` %></option>
+          <%}%>
         </select>
       </p>
       <p><button type="submit">送信</button></p>
