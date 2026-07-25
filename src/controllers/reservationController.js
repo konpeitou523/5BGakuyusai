@@ -2,6 +2,7 @@ import {
   getReservations,
   insertReservation,
 } from "../models/reservationModel.js";
+import crypto from "crypto";
 
 export async function sendReservationForm(req, res) {
   const reservations = await getReservations();
@@ -23,14 +24,21 @@ export async function createReservation(req, res) {
   const { name, time, people } = req.body;
   const peopleNum = Number(people);
   const nameStr = String(name);
+  const token = crypto.randomBytes(32).toString("hex");
+
   if (
     nameStr !== "" &&
     time in timeschedule &&
     peopleNum >= 1 &&
     peopleNum <= maxpeople
   ) {
-    await insertReservation(name, time, people);
-    res.redirect("/reservation");
+    try {
+      await insertReservation(name, time, people,token);
+      res.redirect(`/mypage?token=${token}`);
+    } catch (error) {
+      console.log(error);
+      res.send("予約に失敗しました");
+    }
   } else {
     console.log(`不正な入力${name}${time}${people}`);
     res.redirect("/reservation");
