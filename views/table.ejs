@@ -32,13 +32,24 @@
           <% minute=String(i%60).padStart(2,"0"); %>
           <tr>
             <th><%= `${hour}:${minute}~` %></th>
-            <td><%= `/${maxpeople}` %></td>
+            <td><%= `${schedule[`${hour}:${minute}`]}/${maxpeople}` %></td>
             <td><button>予約</button></td>
             <td></td>
         <% } %>
       </table>      
     </div>
 
+<% reservations.forEach(reservation => { %>
+
+    <p>
+        <%= reservation.name %>
+        /
+        <%= reservation.time %>
+        /
+        <%= reservation.people %>人
+    </p>
+
+<% }) %>
 
     <script src="/scripts/main.js"></script>
     <script src="/scripts/table.js"></script>
