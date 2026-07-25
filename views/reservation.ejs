@@ -19,11 +19,13 @@
     </p>
     <p>
       <label for="time">開始時間を選んでください(必須):</label>
-      <select name="time" id="time" required>
+      <select name="time" id="time" value="time" required>
         <% for(let i=540;i <=820;i=i+interval) { %>
           <% hour=String(Math.floor(i/60)).padStart(2,"0"); %>
           <% minute=String(i%60).padStart(2,"0"); %>
-          <option value=<%= `${hour}:${minute}` %>><%= `${hour}:${minute}~` %></option>
+          <option value="<%= hour + ':' + minute %>" <%= (hour + ':' + minute) === selectedtime ? "selected" : "" %>>
+            <%= hour + ':' + minute %>~
+          </option>
         <%}%>
         </select>
       </p>
