@@ -53,10 +53,16 @@
   mypagebutton.addEventListener("click", () => {
     location.href = `/mypage?token=${reservationToken}`;
   });
+  const notice = document.createElement("p");
+  notice.textContent =
+  "すでに予約済みです。この送信では新規予約ではなく現在の予約内容の変更になります。";
+  notice.style.color = "red";
 
   const area = document.getElementById("mypageNotice");
   area.append(p);
   area.append(mypagebutton);
+  area.append(notice);
+  document.getElementById("mypageNotice").append(notice);
 
   document.getElementById("reservationToken").value = reservationToken;
   }

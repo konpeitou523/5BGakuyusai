@@ -1,7 +1,9 @@
 import {
   getReservations,
   insertReservation,
+  updateReservation,
 } from "../models/reservationModel.js";
+import { getReservationsByToken } from "../models/mypageModel.js";
 import crypto from "crypto";
 
 export async function sendReservationForm(req, res) {
@@ -19,28 +21,47 @@ export async function sendReservationForm(req, res) {
     selectedtime: time,
   });
 }
+
 export async function createReservation(req, res) {
   const { timeschedule, maxpeople } = req.app.locals;
-  const { name, time, people } = req.body;
+  const { name, time, people, token: requestToken } = req.body;
+
   const peopleNum = Number(people);
   const nameStr = String(name);
-  const token = crypto.randomBytes(32).toString("hex");
 
   if (
-    nameStr !== "" &&
-    time in timeschedule &&
-    peopleNum >= 1 &&
-    peopleNum <= maxpeople
+    nameStr === "" ||
+    !(time in timeschedule) ||
+    peopleNum < 1 ||
+    peopleNum > maxpeople
   ) {
-    try {
-      await insertReservation(name, time, people,token);
-      res.redirect(`/mypage?token=${token}`);
-    } catch (error) {
-      console.log(error);
-      res.send("予約に失敗しました");
+    console.log(`不正な入力 ${name}${time}${people}`);
+    return res.redirect("/reservation");
+  }
+
+  try {
+    let token = requestToken;
+
+    if (token) {
+      const reservation = await getReservationsByToken(token);
+
+      if (reservation) {
+        const id=reservation.id;
+        updateReservation(id,name,time,people)
+        res.redirect(`/mypage?token=${token}`);
+        return;
+      }
     }
-  } else {
-    console.log(`不正な入力${name}${time}${people}`);
-    res.redirect("/reservation");
+
+    // 新規作成
+    token = crypto.randomBytes(32).toString("hex");
+
+    await insertReservation(name, time, people, token);
+
+    res.redirect(`/mypage?token=${token}`);
+
+  } catch (error) {
+    console.log(error);
+    res.send("予約に失敗しました");
   }
 }
