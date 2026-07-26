@@ -14,8 +14,14 @@
     <p>
       <%=time%>に予約番号<%=id%>番で<%=people%>名様でのご予約となっております
     </p>
+    <p>
+      注意！ブラウザの設定によってはこのページは一度閉じると開けなくなります！！
+    </p>
+    <p>スクリーンショットやURLを保存しておくことを強く推奨します。</p>
+    <button>デバッグ用</button>
+    <p>上のボタンを押すと、新しいデバイスで開いたときと同じような挙動になります(予約は取り消されない)</p>
     <script>
-        localStorage.setItem("reservationToken","<%=token%>");
+      localStorage.setItem("reservationToken", "<%=token%>");
     </script>
     <script src="/scripts/main.js"></script>
     <script src="/scripts/mypage.js"></script>
