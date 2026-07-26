@@ -1,7 +1,8 @@
 import express from "express";
 import reservationRouter from "./routes/reservation.js";
 import tableRouter from "./routes/table.js";
-import mypageRouter from "./routes/mypage.js"
+import mypageRouter from "./routes/mypage.js";
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 // 学友祭の基礎設定系
@@ -27,6 +28,6 @@ app.use(reservationRouter);
 app.use(tableRouter);
 app.use(mypageRouter);
 
-app.listen(8080, () => {
-  console.log("Server running");
+app.listen(PORT, () => {
+  console.log(`running on ${PORT}`);
 });
