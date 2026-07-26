@@ -14,6 +14,9 @@
     <p>
       <%=time%>に予約番号<%=id%>番で<%=people%>名様でのご予約となっております
     </p>
+    <script>
+        localStorage.setItem("reservationToken","<%=token%>");
+    </script>
     <script src="/scripts/main.js"></script>
     <script src="/scripts/mypage.js"></script>
   </body>

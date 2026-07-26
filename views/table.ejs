@@ -10,8 +10,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>予約状況</title>
+    <script>
+      history.scrollRestoration = "manual";
+      window.scrollTo(0, 0);
+    </script>
   </head>
   <body>
+    
+    <div id="mypageNotice"></div>
+
     <h1>5B学友祭　予約状況</h1>
     <div class="table">
       <table>
@@ -28,29 +35,35 @@
           <th class="topcell">備考</th>
         </tr>
         <% for(let i=540;i<=820;i=i+interval) { %>
-          <% hour=String(Math.floor(i/60)).padStart(2,"0"); %>
-          <% minute=String(i%60).padStart(2,"0"); %>
+          <% const hour=String(Math.floor(i/60)).padStart(2,"0"); %>
+          <% const minute=String(i%60).padStart(2,"0"); %>
           <tr>
             <th><%= `${hour}:${minute}~` %></th>
             <td><%= `${schedule[`${hour}:${minute}`]}/${maxpeople}` %></td>
-            <td><button data-time=<%= `${hour}:${minute}` %>>予約</button></td>
+            <td><button data-time="<%= `${hour}:${minute}` %>" class="reservation">予約</button></td>
             <td></td>
         <% } %>
       </table>      
     </div>
+    <script>
+    const reservationToken=localStorage.getItem("reservationToken");
+    if (reservationToken) {
+      const p = document.createElement("p");
+      p.textContent =
+        "お客様はすでに登録されています。下のボタンからマイページへ移動できます。";
 
-<% reservations.forEach(reservation => { %>
+      const mypagebutton = document.createElement("button");
+      mypagebutton.textContent = "マイページへ移動";
 
-    <p>
-        <%= reservation.name %>
-        /
-        <%= reservation.time %>
-        /
-        <%= reservation.people %>人
-    </p>
+      mypagebutton.addEventListener("click", () => {
+        location.href = `/mypage?token=${reservationToken}`;
+      });
 
-<% }) %>
-
+      const area = document.getElementById("mypageNotice");
+      area.append(p);
+      area.append(mypagebutton);
+    }
+    </script>
     <script src="/scripts/main.js"></script>
     <script src="/scripts/table.js"></script>
   </body>
