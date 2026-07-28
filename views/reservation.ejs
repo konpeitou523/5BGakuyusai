@@ -23,8 +23,10 @@
         <% for(let i=540;i <=820;i=i+interval) { %>
           <% const hour=String(Math.floor(i/60)).padStart(2,"0"); %>
           <% const minute=String(i%60).padStart(2,"0"); %>
-          <option value="<%= hour + ':' + minute %>" <%= (hour + ':' + minute) === selectedtime ? "selected" : "" %>>
-            <%= hour + ':' + minute %>~
+          <% let whethermax=false %>
+          <%if (Number(schedule[`${hour}:${minute}`])>=Number(maxpeople)){whethermax=true;}%>
+          <option value="<%= hour + ':' + minute %>" <%= (hour + ':' + minute) === selectedtime ? "selected" : "" %><%=whethermax?"disabled":""%>>
+            <%= hour + ':' + minute %>~(<%=whethermax?"満員":`${schedule[`${hour}:${minute}`]}人予約中`%>)
           </option>
         <%}%>
         </select>
