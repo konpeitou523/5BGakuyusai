@@ -40,7 +40,11 @@
           <tr>
             <th><%= `${hour}:${minute}~` %></th>
             <td><%= `${schedule[`${hour}:${minute}`]}/${maxpeople}` %></td>
-            <td><button data-time="<%= `${hour}:${minute}` %>" class="reservation">予約</button></td>
+            <% let whethermax=false %>
+            <%if (Number(schedule[`${hour}:${minute}`])>=Number(maxpeople)){whethermax=true;}%>
+            <td><button data-time="<%= `${hour}:${minute}` %>" class="reservation" <%=whethermax ? "disabled":""%> >
+              <%=whethermax ? "満員":"予約"%>
+            </button></td>
             <td></td>
         <% } %>
       </table>      
