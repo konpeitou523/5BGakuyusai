@@ -1,6 +1,6 @@
 const time = document.getElementById("time");
 const people = document.getElementById("people");
-// import { maxpeople,timeschedule } from "../config/settings.js";
+const name = document.getElementById("name");
 function updatePeopleOptions() {
   const timeValue = time.value;
   const reserved = Number(schedule[time.value]);
@@ -21,6 +21,28 @@ time.addEventListener("change", updatePeopleOptions);
 
 updatePeopleOptions();
 
-document.querySelector(".backtotable").addEventListener("click",()=>{
-    location.href="/table"
-})
+document.querySelector(".backtotable").addEventListener("click", () => {
+  const result = confirm(
+    "予約状況ページに戻ります。よろしいですか？(入力は保存されません)",
+  );
+  if (result) {
+    location.href = "/table";
+  } else {
+  }
+});
+
+const form = document.getElementById("reservationForm");
+form.addEventListener("submit", (event) => {
+  const namevalue=name.value;
+  const timevalue=time.value;
+  const peoplevalue=people.value;
+  const message =
+    `以下の内容で予約しますか？\n\n` +
+    `代表者: ${namevalue}\n` +
+    `開始時間: ${timevalue}\n` +
+    `人数: ${peoplevalue}人`;
+
+  if (!confirm(message)) {
+    event.preventDefault();
+  }
+});
