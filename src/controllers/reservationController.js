@@ -8,7 +8,7 @@ import crypto from "crypto";
 
 export async function sendReservationForm(req, res) {
   const reservations = await getReservations();
-  const { timeschedule } = req.app.locals;
+  const { timeschedule,maxpeople } = req.app.locals;
   const schedule = { ...timeschedule };
   reservations.forEach((reservation) => {
     if (reservation.time in schedule) {
@@ -17,11 +17,13 @@ export async function sendReservationForm(req, res) {
       console.log("存在しない時間帯の予約が入っています");
     }
   });
-  const { maxpeople } = req.app.locals;
-  let { time = "09:00" } = req.query;
+  let { time = "" } = req.query;
   if (!(time in timeschedule)) {
     console.log(`Warning 不正な入力${time}`);
-    time = "09:00";
+    time = "";
+  }
+  if(Number(schedule[time]>=maxpeople)){
+    time="";
   }
 
   res.render("reservation.ejs", {

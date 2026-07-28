@@ -35,7 +35,9 @@
         <label for="people">参加者の総数(必須):</label>
         <select name="people" id="people" required>
           <% for(let i=1;i<=maxpeople;i++) { %>
-          <option value=<%=i%>><%= `${i}人` %></option>
+          <option value=<%=i%>>
+            <%= `${i}人` %>
+          </option>
           <%}%>
         </select>
       </p>
