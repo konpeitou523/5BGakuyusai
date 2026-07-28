@@ -2,23 +2,15 @@ import express from "express";
 import reservationRouter from "./routes/reservation.js";
 import tableRouter from "./routes/table.js";
 import mypageRouter from "./routes/mypage.js";
+import * as settings from "./config/settings.js";
 const PORT = process.env.PORT || 8080;
 
 const app = express();
-// 学友祭の基礎設定系
-const interval = 10;
-const maxpeople = 10;
-
+// 学友祭の基礎設定系はsetting.jsへ移行
 // 送信処理
-app.locals.interval = interval;
-app.locals.maxpeople = maxpeople;
-const schedule = {};
-for (let i = 540; i <= 820; i = i + interval) {
-  const hour = String(Math.floor(i / 60)).padStart(2, "0");
-  const minute = String(i % 60).padStart(2, "0");
-  schedule[`${hour}:${minute}`] = 0;
-}
-app.locals.timeschedule = schedule;
+app.locals.interval = settings.interval;
+app.locals.maxpeople = settings.maxpeople;
+app.locals.timeschedule = settings.timeschedule;
 
 // その他設定
 app.set("view engine", "ejs");
