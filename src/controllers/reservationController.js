@@ -8,7 +8,7 @@ import crypto from "crypto";
 
 export async function sendReservationForm(req, res) {
   const reservations = await getReservations();
-  const { timeschedule,maxpeople } = req.app.locals;
+  const { timeschedule, maxpeople } = req.app.locals;
   const schedule = { ...timeschedule };
   reservations.forEach((reservation) => {
     if (reservation.time in schedule) {
@@ -22,8 +22,8 @@ export async function sendReservationForm(req, res) {
     console.log(`Warning 不正な入力${time}`);
     time = "";
   }
-  if(Number(schedule[time]>=maxpeople)){
-    time="";
+  if (Number(schedule[time] >= maxpeople)) {
+    time = "";
   }
 
   res.render("reservation.ejs", {
