@@ -16,10 +16,28 @@
     </script>
   </head>
   <body>
-    
-    <div id="mypageNotice"></div>
+    <dialog id="howtouse">
+      <button id="close">閉じる</button>
+      <h2>使い方</h2>
+      <p>1.予約したい時間帯の「予約」ボタンをクリック(満員だと予約できません)</p>
+      <img src="/images/table_howtouse.jpg" alt="予約表使い方">
+      <p>
+        2.氏名、人数を入力<br>
+        (お子さんと同じ席を使う時は人数に含めません)
+      </p>
+      <img src="/images/reservation_howtouse.jpg" alt="予約送信使い方">
+      <p>
+        3.マイページが表示されます。<br>
+        <strong>必ずURLを保存するか、スクリーンショットを撮影するようにしてください！</strong>
+      </p>
+      <img src="/images/mypage_howtouse.jpg" alt="マイページ">
+    </dialog>
 
+    <div id="mypageNotice"></div>
+    <button class="debug-solve">マイページ表示バグ解決ボタン</button>
+    <p>マイページへ移動をクリックしても、「URLが間違っています」と表示される人向け(当日非表示)</p>
     <h1>5B学友祭　予約状況</h1>
+    <button id="open">使い方</button>
     <div class="table">
       <table>
         <colgroup>
