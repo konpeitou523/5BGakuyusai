@@ -12,6 +12,7 @@
 
 <body>
   <div id="mypageNotice"></div>
+  <div id="reservationform">
   <h1>予約送信ページ</h1>
   <form action="" method="post" id="reservationForm">
     <p>
@@ -49,6 +50,7 @@
       <input type="hidden" name="token" id="reservationToken" value="">
       <p><button type="submit">送信</button></p>
 </form>
+</div>
 <button class="backtotable">予約状況のページに戻る</button>
 
 
@@ -67,7 +69,7 @@
   });
   const notice = document.createElement("p");
   notice.textContent =
-  "すでに予約済みです。この送信では新規予約ではなく現在の予約内容の変更になります。";
+  "すでに予約済みです。上のボタンでマイページへ戻り、一度予約をキャンセルしてください";
   notice.style.color = "red";
 
   const area = document.getElementById("mypageNotice");
@@ -77,6 +79,7 @@
   document.getElementById("mypageNotice").append(notice);
 
   document.getElementById("reservationToken").value = reservationToken;
+  document.getElementById("reservationform").style.display="none";
   }
 </script>
 <script>
