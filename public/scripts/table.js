@@ -1,3 +1,12 @@
+document.getElementById("gomypage").style.display="none";
+const reservationToken=localStorage.getItem("reservationToken");
+document.getElementById("mypagebutton").addEventListener("click",()=>{
+  location.href = `/mypage?token=${reservationToken}`;
+})
+if (reservationToken) {
+  document.getElementById("gomypage").style.display="block";
+}
+
 const btn = document.querySelectorAll("button.reservation");
 btn.forEach((button) => {
   button.addEventListener("click", () => {
@@ -13,6 +22,11 @@ document.querySelector("button.debug-solve").addEventListener("click",()=>{
 document.getElementById("open").addEventListener("click",()=>{
   document.getElementById("howtouse").showModal();
 })
-document.getElementById("close").addEventListener("click",()=>{
+document.getElementById("close1").addEventListener("click",()=>{
   document.getElementById("howtouse").close();
+  window.scrollTo(0, 0);
+})
+document.getElementById("close2").addEventListener("click",()=>{
+  document.getElementById("howtouse").close();
+  window.scrollTo(0, 0);
 })

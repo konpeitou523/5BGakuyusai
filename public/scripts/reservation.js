@@ -1,6 +1,16 @@
 const time = document.getElementById("time");
 const people = document.getElementById("people");
 const name = document.getElementById("name");
+const reservationToken=localStorage.getItem("reservationToken");
+
+document.getElementById("gomypage").style.display="none";
+document.getElementById("mypagebutton").addEventListener("click",()=>{
+  location.href = `/mypage?token=${reservationToken}`;
+})
+if (reservationToken) {
+  document.getElementById("gomypage").style.display="block";
+  document.getElementById("main").style.display="none";
+}
 function updatePeopleOptions() {
   const reserved = Number(schedule[time.value] ?? 0);
 

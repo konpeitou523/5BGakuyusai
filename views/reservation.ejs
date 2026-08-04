@@ -11,8 +11,11 @@
 </head>
 
 <body>
-  <div id="mypageNotice"></div>
-  <div id="reservationform">
+  <div id="gomypage">
+    <p class="red">すでに予約済みです。予約を変更したい場合は、下のボタンでマイページへ戻り、<strong>一度予約をキャンセルしてください。</strong></p>
+    <button id="mypagebutton">マイページへ移動</button>
+  </div>
+  <div id="main">
   <h1>予約送信ページ</h1>
   <form action="" method="post" id="reservationForm">
     <p>
@@ -52,36 +55,6 @@
 </form>
 </div>
 <button class="backtotable">予約状況のページに戻る</button>
-
-
-<script>
-  const reservationToken=localStorage.getItem("reservationToken");
-  if (reservationToken) {
-  const p = document.createElement("p");
-  p.textContent =
-    "お客様はすでに登録されています。下のボタンからマイページへ移動できます。";
-
-  const mypagebutton = document.createElement("button");
-  mypagebutton.textContent = "マイページへ移動";
-
-  mypagebutton.addEventListener("click", () => {
-    location.href = `/mypage?token=${reservationToken}`;
-  });
-  const notice = document.createElement("p");
-  notice.textContent =
-  "すでに予約済みです。上のボタンでマイページへ戻り、一度予約をキャンセルしてください";
-  notice.style.color = "red";
-
-  const area = document.getElementById("mypageNotice");
-  area.append(p);
-  area.append(mypagebutton);
-  area.append(notice);
-  document.getElementById("mypageNotice").append(notice);
-
-  document.getElementById("reservationToken").value = reservationToken;
-  document.getElementById("reservationform").style.display="none";
-  }
-</script>
 <script>
   const schedule = <%- JSON.stringify(schedule) %>;
   const maxpeople = <%= maxpeople %>;

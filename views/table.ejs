@@ -17,7 +17,7 @@
   </head>
   <body>
     <dialog id="howtouse">
-      <button id="close">閉じる</button>
+      <button id="close1">閉じる</button>
       <h2>使い方</h2>
       <p>1.予約したい時間帯の「予約」ボタンをクリック(満員だと予約できません)</p>
       <img src="/images/table_howtouse.jpg" alt="予約表使い方">
@@ -31,9 +31,12 @@
         <strong>必ずURLを保存するか、スクリーンショットを撮影するようにしてください！</strong>
       </p>
       <img src="/images/mypage_howtouse.jpg" alt="マイページ">
+      <button id="close2">閉じる</button>
     </dialog>
-
-    <div id="mypageNotice"></div>
+    <div id="gomypage">
+      <p>お客様はすでに予約されています。下のボタンからマイページへ移動できます。</p>
+      <button id="mypagebutton">マイページへ移動</button>
+    </div>
     <button class="debug-solve">マイページ表示バグ解決ボタン</button>
     <p>マイページへ移動をクリックしても、「URLが間違っています」と表示される人向け(当日非表示)</p>
     <h1>5B学友祭　予約状況</h1>
@@ -67,25 +70,6 @@
         <% } %>
       </table>      
     </div>
-    <script>
-    const reservationToken=localStorage.getItem("reservationToken");
-    if (reservationToken) {
-      const p = document.createElement("p");
-      p.textContent =
-        "お客様はすでに登録されています。下のボタンからマイページへ移動できます。";
-
-      const mypagebutton = document.createElement("button");
-      mypagebutton.textContent = "マイページへ移動";
-
-      mypagebutton.addEventListener("click", () => {
-        location.href = `/mypage?token=${reservationToken}`;
-      });
-
-      const area = document.getElementById("mypageNotice");
-      area.append(p);
-      area.append(mypagebutton);
-    }
-    </script>
     <script src="/scripts/main.js"></script>
     <script src="/scripts/table.js"></script>
   </body>
