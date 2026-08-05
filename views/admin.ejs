@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <link rel="icon" href="/images/icon.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>予約状況</title>
+    <script>
+      history.scrollRestoration = "manual";
+      window.scrollTo(0, 0);
+    </script>
+  </head>
+  <body>
+    <details>
+        <summary>全部(見にくいので非推奨)</summary>
+        <table>
+        <tr>
+            <th>予約番号</th>
+            <th>氏名</th>
+            <th>時間</th>
+            <th>人数</th>
+        </tr>
+        <% reservations.forEach(reservation => { %>
+            <tr>
+                <td><%= reservation["id"] %></td>
+                <td><%= reservation["name"] %></td>
+                <td><%= reservation["time"] %></td>
+                <td><%= reservation["people"] %></td>
+            </tr>
+        <% }); %>
+        </table>
+    </details>
+
+    <% for(let i=540;i<=820;i=i+interval) { %>
+        <% const hour=String(Math.floor(i/60)).padStart(2,"0"); %>
+        <% const minute=String(i%60).padStart(2,"0"); %>
+        <details>
+            <summary><%=`${hour}:${minute}~`%></summary>
+            <table id="<%=`${hour}:${minute}~`%>">
+                <colgroup></colgroup>
+                <tr>
+                    <th>予約番号</th>
+                    <th>氏名</th>
+                    <th>人数</th>
+                </tr>
+                <% schedule[`${hour}:${minute}`].forEach(list => { %>
+                    <tr>
+                        <td><%=list[0]%></td>
+                        <td><%=list[1]%></td>
+                        <td><%=list[2]%></td>
+                    </tr>
+                <% }); %>
+            </table>
+        </details>
+    <% } %>
+
+    <script src="/scripts/main.js"></script>
+    <script src="/scripts/admin.js"></script>
+  </body>
+</html>
