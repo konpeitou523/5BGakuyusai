@@ -31,3 +31,7 @@ img {
     height: auto;
     border: 2px solid black;
 }
+
+summary {
+    font-size: 23px;
+}
