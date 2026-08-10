@@ -1,10 +1,16 @@
-document.getElementById("gomypage").style.display="none";
-const reservationToken=localStorage.getItem("reservationToken");
-document.getElementById("mypagebutton").addEventListener("click",()=>{
+document.getElementById("gomypage").style.display = "none";
+const reservationToken = localStorage.getItem("reservationToken");
+document.getElementById("mypagebutton").addEventListener("click", () => {
   location.href = `/mypage?token=${reservationToken}`;
-})
+});
 if (reservationToken) {
-  document.getElementById("gomypage").style.display="block";
+  document.getElementById("gomypage").style.display = "block";
+}
+
+if (localStorage.getItem("first")==="yes") {
+} else {
+  document.getElementById("howtouse").showModal();
+  localStorage.setItem("first", "yes");
 }
 
 const btn = document.querySelectorAll("button.reservation");
@@ -14,19 +20,19 @@ btn.forEach((button) => {
   });
 });
 
-document.querySelector("button.debug-solve").addEventListener("click",()=>{
+document.querySelector("button.debug-solve").addEventListener("click", () => {
   localStorage.clear();
   location.reload();
-})
+});
 
-document.getElementById("open").addEventListener("click",()=>{
+document.getElementById("open").addEventListener("click", () => {
   document.getElementById("howtouse").showModal();
-})
-document.getElementById("close1").addEventListener("click",()=>{
+});
+document.getElementById("close1").addEventListener("click", () => {
   document.getElementById("howtouse").close();
   window.scrollTo(0, 0);
-})
-document.getElementById("close2").addEventListener("click",()=>{
+});
+document.getElementById("close2").addEventListener("click", () => {
   document.getElementById("howtouse").close();
   window.scrollTo(0, 0);
-})
+});
