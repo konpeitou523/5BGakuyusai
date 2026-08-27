@@ -1,4 +1,4 @@
-export const interval = 10;
+export const interval = 25;
 export const maxpeople = 10;
 const schedule = {};
 const list=[];

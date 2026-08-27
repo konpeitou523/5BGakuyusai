@@ -27,7 +27,7 @@ button.reservation {
 }
 button.dialog{
   width: 100%;
-  height: auto;
+  height: 50px;
 }
 .topcell {
   position: sticky;
