@@ -25,7 +25,7 @@
     <p>
       <label for="time">開始時間を選んでください(必須):</label>
       <select name="time" id="time" required>
-        <% for(let i=540;i <=820;i=i+interval) { %>
+        <% for(let i=540;i <=830-interval;i=i+interval) { %>
           <% const hour=String(Math.floor(i/60)).padStart(2,"0"); %>
           <% const minute=String(i%60).padStart(2,"0"); %>
           <% let whethermax=false %>
