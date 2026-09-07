@@ -12,7 +12,6 @@ export async function sendadmin(req, res) {
   reservations.forEach(reservation => {
     schedule[reservation.time].push([reservation.id,reservation.name,reservation.people])
   });
-  console.log(reservations);
 
   res.render("admin.ejs", {
     reservations: reservations,
