@@ -19,9 +19,8 @@
     <p>
       注意！ブラウザの設定によってはこのページは一度閉じると開けなくなります！！
     </p>
-    <p>スクリーンショットやURLを保存しておくことを強く推奨します。</p>
-    <button id="debug">デバッグ用(別人として予約ページにアクセス)(当日は削除)</button>
-    <button id="backtotable">予約状況ページへ戻る(当日にも表示)</button>
+    <p><strong>スクリーンショットやURLを保存しておくことを強く推奨します。</strong></p>
+    <button id="backtotable">予約状況ページへ戻る</button>
     <form action="/mypage" method="post" id="cancelform">
       <input type="hidden" name="token" value="<%= token %>" />
       <button type="submit">予約をキャンセルする</button>

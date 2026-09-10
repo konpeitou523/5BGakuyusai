@@ -20,11 +20,6 @@ btn.forEach((button) => {
   });
 });
 
-document.querySelector("button.debug-solve").addEventListener("click", () => {
-  localStorage.clear();
-  location.reload();
-});
-
 document.getElementById("open").addEventListener("click", () => {
   document.getElementById("howtouse").showModal();
 });
