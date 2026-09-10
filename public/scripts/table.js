@@ -1,5 +1,5 @@
 document.getElementById("gomypage").style.display = "none";
-const reservationToken = localStorage.getItem("reservationToken");
+const reservationToken = localStorage.getItem("reservationToken2");
 document.getElementById("mypagebutton").addEventListener("click", () => {
   location.href = `/mypage?token=${reservationToken}`;
 });

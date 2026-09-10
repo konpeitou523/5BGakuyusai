@@ -1,7 +1,7 @@
 const time = document.getElementById("time");
 const people = document.getElementById("people");
 const name = document.getElementById("name");
-const reservationToken=localStorage.getItem("reservationToken");
+const reservationToken=localStorage.getItem("reservationToken2");
 
 document.getElementById("gomypage").style.display="none";
 document.getElementById("mypagebutton").addEventListener("click",()=>{
