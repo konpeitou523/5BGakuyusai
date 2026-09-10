@@ -2,7 +2,7 @@ export const interval = 25;
 export const maxpeople = 20;
 const schedule = {};
 const list=[];
-for (let i = 540; i <= 830-interval; i = i + interval) {
+for (let i = 810; i <= 930-interval; i = i + interval) {
   const hour = String(Math.floor(i / 60)).padStart(2, "0");
   const minute = String(i % 60).padStart(2, "0");
   schedule[`${hour}:${minute}`] = 0;
